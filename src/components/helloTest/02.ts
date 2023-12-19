@@ -1,5 +1,5 @@
 
-type TechnologiesType = {
+export type TechnologiesType = {
     id: number
     title: string
 }
@@ -10,12 +10,12 @@ export type CityType = {
         
 }
 
-type AddressType = {
+export type AddressType = {
     streetTitle: string
     city: CityType
 }
 
-type StydentType = {
+export type StydentType = {
     id: number
     name: string
     age: number
