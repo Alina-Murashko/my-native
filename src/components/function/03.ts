@@ -4,7 +4,7 @@ import { StydentType} from './../helloTest/02';
 
 
 export const sum = (a: number, b: number) => {
-    debugger
+    
     return  a+ b;
 }
 

@@ -1,35 +1,59 @@
-import styled from "styled-components"
-import { Element } from "./Element"
-import { ColorType } from "../../App"
 import { useState } from "react"
 
 
-export type TypeColor = {
-    color?:ColorType
-  }
-
-
-  
-
-export const OnOff = (props: TypeColor) => {
-
-    
-
-    return (
-        <StyledOnOff>
-
-            { props.color === "green" ? <Element color={props.color} name={"ON"} /> : <Element name={"ON"} /> }
-            { props.color === "red" ? <Element color={props.color} name={"OFF"}/> : <Element name={"OFF"}/>}
-            { props.color === "green" ? <Element color={props.color} borderRadius={50} marginLeft={100}/> :
-             props.color === "red" ? <Element color={props.color} borderRadius={50} marginLeft={100}/>:
-             <Element borderRadius={50} marginLeft={100}/>}
-            
-        </StyledOnOff>
-    )
+type OnOffType = {
+    onOff?: boolean
 }
 
-const StyledOnOff = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-`
+
+
+
+export const OnOff = (props: OnOffType) => {
+
+    console.log('OnOff-rendering')
+
+    const [onOff,setOnOff] = useState<boolean>(true)
+    
+    console.log(onOff);
+    
+    const StyleWrapper = {
+        display: 'flex',
+        'justifyContent': 'center',
+        'alignItems': 'center',
+         gap: '10px',
+    }
+    
+    const StyleOn = {
+        width: '50px',
+        height: '50px',
+        border: '2px solid black',
+        background: onOff ? 'green' : "grey"
+    
+    }
+    
+    const StyleOff = {
+        width: '50px',
+        height: '50px',
+        border: '2px solid black',
+        background: onOff === undefined ? 'grey': !onOff ? 'red' : "grey"
+    
+    }
+    
+    const StyleIndicator = {
+        width: '10px',
+        height: '10px',
+        borderRadius: '50%',
+        border: '2px solid black',
+        background:  onOff === undefined ? 'grey' : onOff ? 'green' : 'red'
+    
+    }
+
+    return(
+        
+        <div style={StyleWrapper}>
+            <div style={StyleOn} onClick={() => setOnOff(true)}>On</div>
+            <div style={StyleOff} onClick={() => setOnOff(false)}>Off</div>
+            <div style={StyleIndicator}></div>
+        </div>
+    )
+}
