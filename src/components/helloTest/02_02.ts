@@ -9,6 +9,7 @@ export type Addreessype = {
 }
 
 export type HousesType = {
+    id?: number
     buildedAt: number
     repaired: boolean
     address: Addreessype
