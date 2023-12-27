@@ -2,16 +2,16 @@ import { useState } from "react"
 
 
 type OnOffType = {
-    onOff?: boolean
+    onOff: boolean
+    onClick: (onOff: boolean) => void
 }
 
-export const OnOff = (props: OnOffType) => {
+
+
+
+export const  SelfControllingOnOff = (props: OnOffType) => {
 
     console.log('OnOff-rendering')
-
-    const [onOff,setOnOff] = useState<boolean>(true)
-    
-    console.log(onOff);
     
     const StyleWrapper = {
         display: 'flex',
@@ -24,7 +24,7 @@ export const OnOff = (props: OnOffType) => {
         width: '50px',
         height: '50px',
         border: '2px solid black',
-        background: onOff ? 'green' : "grey"
+        background: props.onOff ? 'green' : "grey"
     
     }
     
@@ -32,7 +32,9 @@ export const OnOff = (props: OnOffType) => {
         width: '50px',
         height: '50px',
         border: '2px solid black',
-        background: onOff === undefined ? 'grey': !onOff ? 'red' : "grey"
+        background: props.onOff ? 'grey' : 'red',
+        
+        //props.onOff === undefined ? 'grey': !props.onOff ? 'red' : "grey"
     
     }
     
@@ -41,15 +43,16 @@ export const OnOff = (props: OnOffType) => {
         height: '10px',
         borderRadius: '50%',
         border: '2px solid black',
-        background:  onOff === undefined ? 'grey' : onOff ? 'green' : 'red'
+        background:  props.onOff ? 'green' : 'red'
+        //props.onOff === undefined ? 'grey' : props.onOff ? 'green' : 'red'
     
     }
 
     return(
         
         <div style={StyleWrapper}>
-            <div style={StyleOn} onClick={() => setOnOff(true)}>On</div>
-            <div style={StyleOff} onClick={() => setOnOff(false)}>Off</div>
+            <div style={StyleOn} onClick={() => props.onClick(!props.onOff)}>On</div>
+            <div style={StyleOff} onClick={() => props.onClick(!props.onOff)}>Off</div>
             <div style={StyleIndicator}></div>
         </div>
     )

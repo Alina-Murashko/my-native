@@ -3,19 +3,19 @@ import { useState } from "react"
 type PropsSelfAccordion = {
     titleValue: string
     menu: string[]
+    collapsed: boolean
+    onClick: (collapsed: boolean) => void
 }
 
-
-
-export const SelfControllingAccordion = (props: PropsSelfAccordion) => {
+export const Accordion = (props: PropsSelfAccordion) => {
 console.log('Accordion rendering') 
-const [collapsed,setCollapsed] = useState<boolean>(false)
+
+
 
     return(
         <div>
-            <AccordionTitle title={props.titleValue} onClick={() => setCollapsed(!collapsed)} />
-            {collapsed && <AccordionBody menu={props.menu}/>}
-            
+            <AccordionTitle title={props.titleValue} onClick={() => props.onClick(!props.collapsed)}/>
+            {props.collapsed && <AccordionBody menu={props.menu}/>}
         </div>
     )
 }
@@ -23,13 +23,12 @@ const [collapsed,setCollapsed] = useState<boolean>(false)
 type AccordionTitlePropsType = {
     title: string
     onClick: () => void
-    
 }
 
 function AccordionTitle(props: AccordionTitlePropsType) {
     console.log('AccordionTitle rendering')
     return (
-        <h3 onClick = {() => props.onClick()}> {props.title}</h3>
+        <h3 onClick={props.onClick}> {props.title}</h3>
     )
 }
 

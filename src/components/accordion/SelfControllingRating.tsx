@@ -8,29 +8,28 @@ export const SelfControlingRating = () => {
     const [valueRating, setValueRating] = useState<SelfControlingRatingPropsType>(0)
 
 
-    const onclickStarHendler = (value: SelfControlingRatingPropsType) => {
-       setValueRating(value)
-    }
+   
+      
+   
 
     return (<div>
-                <Star title={"Star"} onClick={() => onclickStarHendler(1)} value={valueRating > 0}/> 
-                <Star title={"Star"} onClick={() => onclickStarHendler(2)} value={valueRating > 1}/> 
-                <Star title={"Star"} onClick={() => onclickStarHendler(3)} value={valueRating > 2}/> 
-                <Star title={"Star"} onClick={() => onclickStarHendler(4)} value={valueRating > 3}/> 
-                <Star title={"Star"} onClick={() => onclickStarHendler(5)} value={valueRating > 4}/> 
+                <Star title={"Star"} onClick={setValueRating} selected={valueRating > 0} value = {1}/> 
+                <Star title={"Star"} onClick={setValueRating} selected={valueRating > 1} value = {2}/> 
+                <Star title={"Star"} onClick={setValueRating} selected={valueRating > 2} value = {3}/> 
+                <Star title={"Star"} onClick={setValueRating} selected={valueRating > 3} value = {4}/> 
+                <Star title={"Star"} onClick={setValueRating} selected={valueRating > 4} value = {5}/> 
             </div>
     )
 }
 type SelfControlingStarType = {
-    value : boolean
+    selected : boolean
     title: string
-    onClick : () => void
+    onClick : ( value :SelfControlingRatingPropsType ) => void
+    value : SelfControlingRatingPropsType
 }
 
 
 const Star = (props : SelfControlingStarType) => {
-
-  
-       return  props.value ? <span onClick={() => props.onClick}><b>{props.title}</b></span> : <span onClick={() => props.onClick}>{props.title}</span>
-        
+   // return props.value ? <span onClick={() => props.onClick()}><b>{props.title}</b></span> : <span onClick={() => props.onClick()}>{props.title}</span>;
+   return <span onClick={() => props.onClick(props.value)}>{props.selected ? <b>star</b> : 'star'}</span> 
 }
