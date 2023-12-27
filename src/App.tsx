@@ -5,7 +5,9 @@ import { Rating } from './components/accordion/Rating';
 import { SelfControlingRating } from './components/accordion/SelfControllingRating';
 
 import { SelfControllingAccordion } from './components/accordion/SelfСontrollingAccordion';
-import { SelfControllingOnOff } from './components/OnOff/SelfControllingOnOff';
+import { OnOff } from './components/OnOff/OnOff';
+import { SelfControlOnOff } from './components/OnOff/SelfControlOnOff';
+
 
 
 function App() {
@@ -21,13 +23,25 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Accordion menu={menu} titleValue={'menu'} collapsed = {collapsetAccordion} onClick = {setcollapsetAccordion}/>
+        <Accordion menu={menu} titleValue={'menu'} 
+                  collapsed = {collapsetAccordion} onClick = {setcollapsetAccordion}/>
+        <SelfControllingAccordion menu={menu} titleValue={'menu'} onChange={setcollapsetAccordion}/>{collapsetAccordion.toString()}
       </div>
       <div>
-        <Rating value={valueRating} onClick={setValueRating}/>
-      </div>
-      <SelfControllingOnOff onOff={onOff} onClick={setOnOff}/>
+        <div>
+          <Rating value={valueRating} onClick={setValueRating}/>
+        </div>
+        <div>
+          <SelfControlingRating onChange={setValueRating}/>{valueRating.toString()}
+        </div>
+        <div>
+          <OnOff onOff={onOff} onClick={setOnOff}/>
+        </div>
+        <div>
+        <SelfControlOnOff onChange = {setOnOff}/>{onOff.toString()}
+        </div>
     </div>
+  </div>
   );
 }
 

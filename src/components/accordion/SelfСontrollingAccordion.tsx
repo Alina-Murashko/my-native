@@ -3,17 +3,23 @@ import { useState } from "react"
 type PropsSelfAccordion = {
     titleValue: string
     menu: string[]
+    onChange: (calapsed: boolean) => void;
 }
 
 
 
 export const SelfControllingAccordion = (props: PropsSelfAccordion) => {
 console.log('Accordion rendering') 
-const [collapsed,setCollapsed] = useState<boolean>(false)
+const [collapsed,setCollapsed] = useState<boolean>(false);
+
+const onClickHandler = (collapsed: boolean) => {
+    setCollapsed(collapsed);
+    props.onChange(collapsed);
+}
 
     return(
         <div>
-            <AccordionTitle title={props.titleValue} onClick={() => setCollapsed(!collapsed)} />
+            <AccordionTitle title={props.titleValue} onClick={() => onClickHandler(!collapsed)}  />
             {collapsed && <AccordionBody menu={props.menu}/>}
             
         </div>

@@ -1,17 +1,20 @@
 import { useState } from "react"
+import { OnOff } from "./OnOff"
 
 
 type OnOffType = {
-    onOff: boolean
-    onClick: (onOff: boolean) => void
-}
+    onOff?: boolean
+    onChange: (onOff: boolean) => void}
 
 
-
-
-export const  SelfControllingOnOff = (props: OnOffType) => {
+    
+export const SelfControlOnOff = (props: OnOffType) => {
 
     console.log('OnOff-rendering')
+
+    const [onOff,setOnOff] = useState<boolean>(true)
+    
+    console.log(onOff);
     
     const StyleWrapper = {
         display: 'flex',
@@ -24,7 +27,7 @@ export const  SelfControllingOnOff = (props: OnOffType) => {
         width: '50px',
         height: '50px',
         border: '2px solid black',
-        background: props.onOff ? 'green' : "grey"
+        background: onOff ? 'green' : "grey"
     
     }
     
@@ -32,9 +35,7 @@ export const  SelfControllingOnOff = (props: OnOffType) => {
         width: '50px',
         height: '50px',
         border: '2px solid black',
-        background: props.onOff ? 'grey' : 'red',
-        
-        //props.onOff === undefined ? 'grey': !props.onOff ? 'red' : "grey"
+        background: onOff === undefined ? 'grey': !onOff ? 'red' : "grey"
     
     }
     
@@ -43,16 +44,20 @@ export const  SelfControllingOnOff = (props: OnOffType) => {
         height: '10px',
         borderRadius: '50%',
         border: '2px solid black',
-        background:  props.onOff ? 'green' : 'red'
-        //props.onOff === undefined ? 'grey' : props.onOff ? 'green' : 'red'
+        background:  onOff === undefined ? 'grey' : onOff ? 'green' : 'red'
     
+    }
+
+    const  OnClickHandler =  (onOff: boolean) => {
+        setOnOff(!onOff);
+        props.onChange(onOff)
     }
 
     return(
         
         <div style={StyleWrapper}>
-            <div style={StyleOn} onClick={() => props.onClick(!props.onOff)}>On</div>
-            <div style={StyleOff} onClick={() => props.onClick(!props.onOff)}>Off</div>
+            <div style={StyleOn} onClick={() => OnClickHandler(onOff)}>On</div>
+            <div style={StyleOff} onClick={() => OnClickHandler(onOff)}>Off</div>
             <div style={StyleIndicator}></div>
         </div>
     )
