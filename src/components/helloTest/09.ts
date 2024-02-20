@@ -1,4 +1,5 @@
-import { UserType } from "./09.test"
+import { UserType, UsersTypeAdd } from "./09.test"
+
 
 var user = {
     name: 'Dimych',

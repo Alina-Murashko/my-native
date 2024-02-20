@@ -4,7 +4,7 @@ import { useState } from "react"
 
 
 
-type RatingType = {
+export type RatingType = {
     value: 0 | 1 | 2 | 3 | 4 | 5
     onClick: (value: 0 | 1 | 2 | 3 | 4 | 5) => void
 }

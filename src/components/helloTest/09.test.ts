@@ -1,12 +1,12 @@
 import { increaseAge } from "./09"
 
 
-export type UsersType = {
+export type UsersTypeAdd = {
     name: string
     age: number
     address: {title: string}
 }
-type UserType = {
+export type UserType = {
     name: string
     age: number
 }
@@ -59,7 +59,7 @@ test('value type test', () => {
 
 test('reference type test objects', () => {
 
-    let user : UsersType = {
+    let user : UsersTypeAdd = {
         name: 'Dimych',
         age: 32,
         address: {
@@ -69,7 +69,7 @@ test('reference type test objects', () => {
 
     let addAdress = user.address;
 
-    let user2: UsersType = {
+    let user2: UsersTypeAdd = {
         name: 'Dimych',
         age: 32,
         address: addAdress,

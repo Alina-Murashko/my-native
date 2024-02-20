@@ -23,8 +23,8 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Accordion menu={menu} titleValue={'menu'} 
-                  collapsed = {collapsetAccordion} onClick = {setcollapsetAccordion}/>
+        {/*<Accordion menu={menu} titleValue={'menu'} 
+                  collapsed = {collapsetAccordion} onClick = {setcollapsetAccordion}/>*/}
         <SelfControllingAccordion menu={menu} titleValue={'menu'} onChange={setcollapsetAccordion}/>{collapsetAccordion.toString()}
       </div>
       <div>

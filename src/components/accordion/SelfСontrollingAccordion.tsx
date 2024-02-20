@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useReducer, useState } from "react"
+import { StateType, reducer } from "./reducer";
 
 type PropsSelfAccordion = {
     titleValue: string
@@ -10,17 +11,23 @@ type PropsSelfAccordion = {
 
 export const SelfControllingAccordion = (props: PropsSelfAccordion) => {
 console.log('Accordion rendering') 
-const [collapsed,setCollapsed] = useState<boolean>(false);
+//const [collapsed,setCollapsed] = useState<boolean>(false);
+const [collapsed, dispatchCollapsed] = useReducer(reducer,{ collapsed:false})
 
-const onClickHandler = (collapsed: boolean) => {
-    setCollapsed(collapsed);
-    props.onChange(collapsed);
+
+//const onClickHandler = (collapsed: boolean)
+const onClickHandler = (collapsed: StateType) => {
+    //setCollapsed(collapsed);
+    //props.onChange(collapsed);
+    dispatchCollapsed({type: 'TOOGGLE_COLLAPSED'});
+    props.onChange(collapsed.collapsed);
+    
 }
 
     return(
         <div>
-            <AccordionTitle title={props.titleValue} onClick={() => onClickHandler(!collapsed)}  />
-            {collapsed && <AccordionBody menu={props.menu}/>}
+            <AccordionTitle title={props.titleValue} onClick={() => onClickHandler(collapsed)}  />
+            {collapsed.collapsed && <AccordionBody menu={props.menu}/>}
             
         </div>
     )
