@@ -4,16 +4,17 @@ export default {
     title: 'useState demo'
 }
 
-
 function generateData() {
     return 12345678975
 }
 export const Example = () => {
     console.log('Example');
-    const initValue = generateData()
     const [counter,setCounter] = useState<number>(generateData);
-    return <>
-    <button onClick={() => setCounter(counter + 1)}>+</button>
-    {counter}
-    </>
+    const change = (state: number) => state + 1
+    return (
+    <div>
+          <button onClick={() => setCounter(change)}>+</button>
+            {counter}
+    </div>)
+
 }
