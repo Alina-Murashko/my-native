@@ -10,6 +10,7 @@ function generateData() {
 export const Example = () => {
     console.log('Example');
     const [counter,setCounter] = useState<number>(generateData);
+    
     const change = (state: number) => state + 1
     return (
     <div>

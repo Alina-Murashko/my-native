@@ -13,11 +13,10 @@ export const Example = () => {
 
     let resultATest = useMemo(() => {
         let resaltA: number = 1;
-        for(let i = 0; i <=a;i++) {
+        for(let i = 1; i <= a;i++) {
             let fake: number= 0;
             while(fake < 1000000000) {
                 fake++
-                const fakeValue = Math.random() * fake;
             }
             resaltA = resaltA*i;
         }
@@ -25,7 +24,7 @@ export const Example = () => {
     },[a])
    
 
-    for(let i = 0; i <=b;i++) {
+    for(let i = 1; i <= b;i++) {
         resaltB = resaltB*i
     }
 
@@ -33,7 +32,7 @@ export const Example = () => {
         <div>
             <input value={a} onChange={(e)=> setA(Number(e.currentTarget.value))} />
             <input value={b} onChange={(e)=> setB(Number(e.currentTarget.value))} />
-           <div> result for {resultATest}</div>
+            <div> result for {resultATest}</div>
             <div>result for {resaltB}</div>
         </div>
    )
@@ -51,19 +50,22 @@ const UserSecret = (props:{users:Array<any>}) => {
 const User = React.memo(UserSecret)
 
 export const HelpsForReactMemo = () => {
-    console.log('helper')
+    console.log('HelpsForReactMemo');
+
         const [counter,setCounter] = useState(0);
         const [users,setUsers] = useState(['Alina','Sasha','Lesha'])
 
-   let newUser = () => {
+  
+    const result: Array<string> = useMemo(() => {
         const result = users.filter(el => el === 'Alina');
         setUsers(users)
-        return result
-    }
+        return result},[users])
+    
    
     return <div>
         <button onClick={() => setCounter(counter + 1)}>+</button>
         {counter}
         <User users={users}/>
+        <button onClick={() => setUsers([...users,'Sasha'])}>+ user</button>
     </div>
 }
